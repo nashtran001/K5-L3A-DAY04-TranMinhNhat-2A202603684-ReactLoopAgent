@@ -18,7 +18,7 @@
 <text x="672" y="168" fill="#7658b2" font-family="'DejaVu Sans', Arial, sans-serif" font-size="12" font-weight="700" >LLM PROVIDER</text>
 <text x="672" y="203" fill="#292046" font-family="'DejaVu Sans', Arial, sans-serif" font-size="23" font-weight="700" >LLM</text>
 <text x="672" y="231" fill="#324761" font-family="'DejaVu Sans', Arial, sans-serif" font-size="15" font-weight="400" >Chọn tool hoặc trả lời</text>
-<text x="672" y="253" fill="#324761" font-family="'DejaVu Sans', Arial, sans-serif" font-size="14" font-weight="400" >OpenAI / Gemini / ...</text>
+<text x="672" y="253" fill="#324761" font-family="'DejaVu Sans', Arial, sans-serif" font-size="14" font-weight="400" >OpenRouter / ...</text>
 <rect x="925" y="145" width="235" height="120" rx="16" fill="#edf9f2" stroke="#b7dfc5" stroke-width="1.5"/>
 <text x="945" y="178" fill="#36845c" font-family="'DejaVu Sans', Arial, sans-serif" font-size="12" font-weight="700" >KẾT QUẢ</text>
 <text x="945" y="210" fill="#123a2a" font-family="'DejaVu Sans', Arial, sans-serif" font-size="19" font-weight="700" >Final answer</text>

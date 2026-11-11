@@ -7,7 +7,8 @@ from pathlib import Path
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from agent import run_agent
-from providers import Provider
+from providers import Provider, CONFIG
+from runtime_config import load_env
 from scenarios import ScenarioTools
 from grading import grade_case, summarize, bonus_points
 from bonus.tools import BonusTools
@@ -32,9 +33,10 @@ def run_case(case, args):
 
 
 def main():
+    load_env()
     parser = argparse.ArgumentParser(description='Chạy agent và chấm eval 0–100')
-    choices = ['openai', 'gemini', 'anthropic', 'openrouter']
-    parser.add_argument('--provider', choices=choices, default=os.getenv('PROVIDER', 'openai'))
+    choices = list(CONFIG)
+    parser.add_argument('--provider', choices=choices, default=os.getenv('PROVIDER', 'openrouter'))
     parser.add_argument('--model', default=os.getenv('MODEL'))
     parser.add_argument('--judge-provider', choices=choices, default=os.getenv('JUDGE_PROVIDER'))
     parser.add_argument('--judge-model', default=os.getenv('JUDGE_MODEL'))

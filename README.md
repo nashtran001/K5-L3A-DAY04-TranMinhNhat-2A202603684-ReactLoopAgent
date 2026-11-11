@@ -50,9 +50,9 @@ Fork repo đề về tài khoản của bạn, đổi tên theo mẫu (chi tiế
 
 ```bash
 python3 --version
-export PROVIDER=openai
-export MODEL='<tên-model-có-tool-calling>'
-export OPENAI_API_KEY='<api-key>'
+export PROVIDER=openrouter
+export MODEL=openai/gpt-4o-mini
+export OPENROUTER_API_KEY='<api-key>'
 ```
 
 Chọn cấu hình khác nếu cần:
@@ -60,13 +60,15 @@ Chọn cấu hình khác nếu cần:
 | `PROVIDER` | Biến chứa key | `MODEL` |
 |---|---|---|
 | `openai` | `OPENAI_API_KEY` | Tên model OpenAI bạn được cấp quyền dùng. |
-| `gemini` | `GEMINI_API_KEY` | Tên model Gemini hỗ trợ function calling. |
+| `deepseek` | `DEEPSEEK_API_KEY` | Tên model DeepSeek hỗ trợ tool calling. |
 | `anthropic` | `ANTHROPIC_API_KEY` | Tên model Claude hỗ trợ tool use. |
 | `openrouter` | `OPENROUTER_API_KEY` | Model ID đầy đủ trên OpenRouter, thường có dạng provider/model. |
 
-Ví dụ chuyển sang Gemini: `export PROVIDER=gemini`, đặt `GEMINI_API_KEY` và `MODEL` phù hợp. Chọn một provider; không cần cả bốn key. File `.env.example` chỉ là mẫu: chương trình **không tự đọc `.env`**. Có thể chạy `cp .env.example .env`, điền key rồi chạy `source .env` trong mỗi terminal mới. Trên Windows, dùng Git Bash để chạy đúng các lệnh này, hoặc thay `python3` bằng `python` và đặt biến bằng `$env:TEN_BIEN='gia_tri'` trong PowerShell. Không commit key hay trace chứa dữ liệu nhạy cảm.
+OpenRouter là provider mặc định. Chỉ cần `OPENROUTER_API_KEY`, không cần key OpenAI khi dùng model `openai/gpt-4o-mini` qua OpenRouter. Có thể đổi `MODEL` sang model ID khác có hỗ trợ tool calling. Judge mặc định dùng cùng provider/model với agent.
 
-Adapter dùng Chat Completions cho OpenAI, Gemini compatibility và OpenRouter; Anthropic dùng Messages API. Nó phục vụ **tool calling cơ bản**, không bao phủ mọi tính năng đặc thù model như extended thinking. Khi provider từ chối model hoặc hết quota, kiểm tra quyền truy cập, model ID và key. Xem tài liệu: [OpenAI](https://developers.openai.com/api/docs/guides/function-calling), [Gemini](https://ai.google.dev/gemini-api/docs/openai), [Anthropic](https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works), [OpenRouter](https://openrouter.ai/docs/guides/features/tool-calling).
+Cả `run.py` và `evals/run_evals.py` tự đọc `.env` tại thư mục dự án; biến môi trường đã đặt trong shell được ưu tiên. File chấp nhận `TEN_BIEN=gia_tri` và tiền tố `export` tùy chọn. Trên PowerShell, chạy `Copy-Item .env.example .env` nếu chưa có `.env`, mở `.env` để điền key, sau đó chạy `.\.venv\Scripts\python.exe run.py 'GitHub Actions hiện có sự cố không?'`. Nếu chưa có virtual environment, dùng `python` hoặc `python3` phù hợp với máy. Không commit key hay trace chứa dữ liệu nhạy cảm.
+
+Adapter dùng Chat Completions cho OpenAI, DeepSeek và OpenRouter; Anthropic dùng Messages API. Nó phục vụ **tool calling cơ bản**, không bao phủ mọi tính năng đặc thù model như extended thinking. Khi provider từ chối model hoặc hết quota, kiểm tra quyền truy cập, model ID và key. Xem tài liệu: [OpenAI](https://developers.openai.com/api/docs/guides/function-calling), [Anthropic](https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works), [OpenRouter](https://openrouter.ai/docs/guides/features/tool-calling).
 
 ## 2. Chạy thử
 
